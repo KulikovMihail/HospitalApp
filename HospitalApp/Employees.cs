@@ -12,23 +12,22 @@ namespace HospitalApp
     using System;
     using System.Collections.Generic;
     
-    public partial class Patients
+    public partial class Employees
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Patients()
+        public Employees()
         {
-            this.Prescriptions = new HashSet<Prescriptions>();
+            this.Patients = new HashSet<Patients>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string SureName { get; set; }
-        public string Diagnosis { get; set; }
-        public Nullable<System.DateTime> BirthDate { get; set; }
-        public Nullable<int> DoctorId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Position { get; set; }
+        public string Email { get; set; }
     
-        public virtual Employees Employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Prescriptions> Prescriptions { get; set; }
+        public virtual ICollection<Patients> Patients { get; set; }
     }
 }

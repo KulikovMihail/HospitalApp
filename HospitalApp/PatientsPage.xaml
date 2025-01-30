@@ -14,15 +14,21 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!-- Фильтр поиска -->
+
+            <TextBox x:Name="txtSearch" Width="200" 
+                     TextChanged="txtSearch_TextChanged" Margin="10,3,570,7"/>
+
+
         <!-- Кнопки управления -->
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
-            <Button x:Name="btnAdd" Content="Добавить" Click="btnAdd_Click" Margin="0,0,10,0"/>
-            <Button x:Name="btnEdit" Content="Редактировать" Click="btnEdit_Click" Margin="0,0,10,0"/>
-            <Button x:Name="btnDelete" Content="Удалить" Click="btnDelete_Click"/>
-        </StackPanel>
+
+            <Button x:Name="btnAdd" Content="Добавить" Click="btnAdd_Click" Margin="478,3,170,10"/>
+            <Button x:Name="btnDelete" Content="Удалить" Click="btnDelete_Click" Margin="356,3,312,10"/>
+            <Button x:Name="btnEdit" Content="Редактировать" Click="btnEdit_Click" Height="21" Width="123" Margin="219,0,438,7"/>
+
 
         <!-- Таблица/список -->
-        <DataGrid x:Name="dgPatients" Grid.Row="1" 
+        <DataGrid x:Name="dgPatients" Grid.Row="2" 
                   AutoGenerateColumns="True" 
                   IsReadOnly="True"
                   SelectionMode="Single"

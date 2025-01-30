@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HospitalApp
 {
@@ -20,52 +11,92 @@ namespace HospitalApp
     /// </summary>
     public partial class PatientsPage : Page
     {
-        // Это класс контекста, сгенерированный EDMX. 
-        // Может называться HospitalDBEntities, HospitalModelContainer и т.п.
-        // Проверьте точное имя в вашем .Context.cs
-        private Entities _context = new Entities();
+        private HospitalEntities _context = new HospitalEntities();
+        private Employee CurrentUser;
 
-        public PatientsPage()
+        public PatientsPage(Employee loggedInEmployee)
         {
             InitializeComponent();
+            CurrentUser = loggedInEmployee;
             LoadPatients();
+            SetButtonVisibility(CurrentUser.UserRole);
         }
 
-        private void LoadPatients()
+        private void SetButtonVisibility(Role userRole)
         {
-            // Просто читаем всех пациентов из БД
-            var patients = _context.Patients.ToList();
-            dgPatients.ItemsSource = patients;
+            // Скрытие кнопок редактирования и удаления для интернов
+            if (userRole == Role.Intern)
+            {
+                btnEdit.Visibility = Visibility.Collapsed;
+                btnDelete.Visibility = Visibility.Collapsed;
+                // Если есть другие кнопки, которые нужно скрыть, вы можете сделать это здесь
+            }
+        }
+
+        private void LoadPatients(string filter = null)
+        {
+            try
+            {
+                var patientsQuery = _context.Patients.AsQueryable();
+
+                // Применяем фильтр
+                if (!string.IsNullOrWhiteSpace(filter))
+                {
+                    var lowerFilter = filter.ToLower();
+                    DateTime birthDateFilter;
+
+                    // Проверяем, является ли фильтр датой
+                    bool isDate = DateTime.TryParse(filter, out birthDateFilter);
+
+                    // Выполняем фильтрацию
+                    patientsQuery = patientsQuery
+                        .Where(p => p.Name.ToLower().Contains(lowerFilter) ||
+                                    p.SureName.ToLower().Contains(lowerFilter) ||
+                                    p.Diagnosis.ToLower().Contains(lowerFilter)); // Сравниваем только по дате без времени
+                }
+
+                dgPatients.ItemsSource = patientsQuery.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке данных: {ex.Message}");
+            }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            // Примерно: Открываем диалоговое окно/или отдельную страницу
-            // Упростим: прямо тут создадим нового пациента (в реальном проекте лучше диалог)
-            var newPatient = new Patients
+            var addPatientWindow = new AddPatientWindow(_context);
+            if (addPatientWindow.ShowDialog() == true)
             {
-                FirstName = "Иван",
-                LastName = "Иванов",
-                Age = 30,
-                Diagnosis = "Грипп"
-            };
+                LoadPatients();
+            }
+        }
 
-            _context.Patients.Add(newPatient);
-            _context.SaveChanges();   // вставка в БД
+        private void dgPatients_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (dgPatients.SelectedItem == null) return;
+            var selected = dgPatients.SelectedItem as Patients;
+            if (selected == null) return;
+
+            var editPatientWindow = new EditPatientWindow(_context, selected);
+            editPatientWindow.ShowDialog();
             LoadPatients();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (dgPatients.SelectedItem == null) return;
-            // Приводим SelectedItem к типу Patients (сгенерированный класс)
-            var selected = dgPatients.SelectedItem as Patients;
-            if (selected == null) return;
-
-            // Изменим какие-то поля (в реальном проекте - форма редактирования)
-            selected.Diagnosis = "Изменённый диагноз";
-            _context.SaveChanges();  // EF отслеживает изменения
-            LoadPatients();
+            if (dgPatients.SelectedItem is Patients selectedPatient)
+            {
+                EditPatientWindow editWindow = new EditPatientWindow(_context, selectedPatient);
+                if (editWindow.ShowDialog() == true) // если окно закрылось с успешным результатом
+                {
+                    LoadPatients(); // обновляем список пациентов
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите пациента для редактирования.");
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -74,10 +105,27 @@ namespace HospitalApp
             var selected = dgPatients.SelectedItem as Patients;
             if (selected == null) return;
 
-            // Удаляем
-            _context.Patients.Remove(selected);
-            _context.SaveChanges();
-            LoadPatients();
+            // Подтверждение удаления
+            if (MessageBox.Show($"Вы уверены, что хотите удалить пациента {selected.Name}?",
+                "Подтверждение удаления",
+                MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    _context.Patients.Remove(selected);
+                    _context.SaveChanges();
+                    LoadPatients();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при удалении пациента: {ex.Message}");
+                }
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            LoadPatients(txtSearch.Text);
         }
     }
 }

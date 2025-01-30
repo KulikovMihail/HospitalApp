@@ -1,39 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HospitalApp
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        private Employee currentUser;
+
         public MainWindow()
         {
             InitializeComponent();
-            // При желании можно изначально загрузить какую-то стартовую страницу
-            // MainFrame.Navigate(new PatientsPage());
+            currentUser = new Employee { Name = "Имя сотрудника", UserRole = Role.Doctor }; // пример
+            OpenPatientsPage();
+        }
+
+        private void OpenPatientsPage()
+        {
+            // Мы не используем navigate здесь, просто открываем PatientsPage
+            PatientsPage patientsPage = new PatientsPage(currentUser);
+            MainFrame.Navigate(patientsPage);
         }
 
         private void btnPatients_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new PatientsPage());
+            // Передаем currentUser при вызове PatientsPage
+            PatientsPage patientsPage = new PatientsPage(currentUser);
+            MainFrame.Navigate(patientsPage);
         }
 
         private void btnMedications_Click(object sender, RoutedEventArgs e)
         {
+            // Здесь предполагается, что MedicationsPage также принимает currentUser
+            // Если нет, измените его соответствующим образом
             MainFrame.Navigate(new MedicationsPage());
         }
     }

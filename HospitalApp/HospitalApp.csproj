@@ -65,18 +65,88 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddEmployeeWindow.xaml.cs">
+      <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddMedicationWindow.xaml.cs">
+      <DependentUpon>AddMedicationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddPatientWindow.xaml.cs">
+      <DependentUpon>AddPatientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditMedicationWindow.xaml.cs">
+      <DependentUpon>EditMedicationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditPatientWindow.xaml.cs">
+      <DependentUpon>EditPatientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs" />
+    <Compile Include="Employees.cs">
+      <DependentUpon>HospitalApp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeesPage.xaml.cs">
+      <DependentUpon>EmployeesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HospitalApp.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HospitalApp.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HospitalApp.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HospitalApp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HospitalApp.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HospitalApp.edmx</DependentUpon>
+    </Compile>
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MedicationsPage.xaml.cs">
       <DependentUpon>MedicationsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Medicines.cs">
+      <DependentUpon>HospitalApp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Patients.cs">
+      <DependentUpon>HospitalApp.tt</DependentUpon>
+    </Compile>
     <Compile Include="PatientsPage.xaml.cs">
       <DependentUpon>PatientsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prescriptions.cs">
+      <DependentUpon>HospitalApp.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Services\MedicationService.cs" />
     <Compile Include="Services\PatientService.cs" />
+    <Page Include="AddEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddMedicationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddPatientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditMedicationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditPatientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -104,29 +174,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Medications.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Medication.cs" />
     <Compile Include="Models\Patient.cs" />
-    <Compile Include="Patients.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -144,12 +193,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model1.edmx">
+    <EntityDeploy Include="HospitalApp.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>HospitalApp.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <None Include="HospitalApp.edmx.diagram">
+      <DependentUpon>HospitalApp.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -161,19 +210,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="HospitalApp.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HospitalApp.edmx</DependentUpon>
+      <LastGenOutput>HospitalApp.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="HospitalApp.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HospitalApp.edmx</DependentUpon>
+      <LastGenOutput>HospitalApp.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
