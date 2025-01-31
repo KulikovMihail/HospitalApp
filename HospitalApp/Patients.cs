@@ -14,21 +14,10 @@ namespace HospitalApp
     
     public partial class Patients
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Patients()
-        {
-            this.Prescriptions = new HashSet<Prescriptions>();
-        }
-    
         public int Id { get; set; }
         public string Name { get; set; }
         public string SureName { get; set; }
         public string Diagnosis { get; set; }
         public Nullable<System.DateTime> BirthDate { get; set; }
-        public Nullable<int> DoctorId { get; set; }
-    
-        public virtual Employees Employees { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Prescriptions> Prescriptions { get; set; }
     }
 }

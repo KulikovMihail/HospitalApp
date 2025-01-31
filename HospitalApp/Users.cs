@@ -12,14 +12,10 @@ namespace HospitalApp
     using System;
     using System.Collections.Generic;
     
-    public partial class Prescriptions
+    public partial class Users
     {
-        public int Id { get; set; }
-        public Nullable<int> PatientId { get; set; }
-        public Nullable<int> MedicineId { get; set; }
-        public Nullable<System.DateTime> DatePrescribed { get; set; }
-    
-        public virtual Medicines Medicines { get; set; }
-        public virtual Patients Patients { get; set; }
+        public int ID { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }

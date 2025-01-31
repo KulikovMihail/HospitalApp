@@ -12,26 +12,15 @@ namespace HospitalApp
     public partial class PatientsPage : Page
     {
         private HospitalEntities _context = new HospitalEntities();
-        private Employee CurrentUser;
 
-        public PatientsPage(Employee loggedInEmployee)
+        public PatientsPage()
         {
             InitializeComponent();
-            CurrentUser = loggedInEmployee;
             LoadPatients();
-            SetButtonVisibility(CurrentUser.UserRole);
+            
         }
 
-        private void SetButtonVisibility(Role userRole)
-        {
-            // Скрытие кнопок редактирования и удаления для интернов
-            if (userRole == Role.Intern)
-            {
-                btnEdit.Visibility = Visibility.Collapsed;
-                btnDelete.Visibility = Visibility.Collapsed;
-                // Если есть другие кнопки, которые нужно скрыть, вы можете сделать это здесь
-            }
-        }
+
 
         private void LoadPatients(string filter = null)
         {

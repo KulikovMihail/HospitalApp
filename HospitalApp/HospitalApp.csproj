@@ -65,9 +65,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddEmployeeWindow.xaml.cs">
-      <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AddMedicationWindow.xaml.cs">
       <DependentUpon>AddMedicationWindow.xaml</DependentUpon>
     </Compile>
@@ -80,27 +77,20 @@
     <Compile Include="EditPatientWindow.xaml.cs">
       <DependentUpon>EditPatientWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Employee.cs" />
-    <Compile Include="Employees.cs">
-      <DependentUpon>HospitalApp.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EmployeesPage.xaml.cs">
-      <DependentUpon>EmployeesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="HospitalApp.Context.cs">
+    <Compile Include="HosptialApp.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HospitalApp.Context.tt</DependentUpon>
+      <DependentUpon>HosptialApp.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="HospitalApp.cs">
+    <Compile Include="HosptialApp.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HospitalApp.tt</DependentUpon>
+      <DependentUpon>HosptialApp.tt</DependentUpon>
     </Compile>
-    <Compile Include="HospitalApp.Designer.cs">
+    <Compile Include="HosptialApp.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HospitalApp.edmx</DependentUpon>
+      <DependentUpon>HosptialApp.edmx</DependentUpon>
     </Compile>
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -109,24 +99,20 @@
       <DependentUpon>MedicationsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Medicines.cs">
-      <DependentUpon>HospitalApp.tt</DependentUpon>
+      <DependentUpon>HosptialApp.tt</DependentUpon>
     </Compile>
     <Compile Include="Patients.cs">
-      <DependentUpon>HospitalApp.tt</DependentUpon>
+      <DependentUpon>HosptialApp.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientsPage.xaml.cs">
       <DependentUpon>PatientsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Prescriptions.cs">
-      <DependentUpon>HospitalApp.tt</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Services\MedicationService.cs" />
     <Compile Include="Services\PatientService.cs" />
-    <Page Include="AddEmployeeWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="Users.cs">
+      <DependentUpon>HosptialApp.tt</DependentUpon>
+    </Compile>
     <Page Include="AddMedicationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,10 +126,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditPatientWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EmployeesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,12 +175,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="HospitalApp.edmx">
+    <EntityDeploy Include="HosptialApp.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HospitalApp.Designer.cs</LastGenOutput>
+      <LastGenOutput>HosptialApp.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="HospitalApp.edmx.diagram">
-      <DependentUpon>HospitalApp.edmx</DependentUpon>
+    <None Include="HosptialApp.edmx.diagram">
+      <DependentUpon>HosptialApp.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -213,15 +195,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HospitalApp.Context.tt">
+    <Content Include="HosptialApp.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HospitalApp.edmx</DependentUpon>
-      <LastGenOutput>HospitalApp.Context.cs</LastGenOutput>
+      <DependentUpon>HosptialApp.edmx</DependentUpon>
+      <LastGenOutput>HosptialApp.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="HospitalApp.tt">
+    <Content Include="HosptialApp.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HospitalApp.edmx</DependentUpon>
-      <LastGenOutput>HospitalApp.cs</LastGenOutput>
+      <DependentUpon>HosptialApp.edmx</DependentUpon>
+      <LastGenOutput>HosptialApp.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

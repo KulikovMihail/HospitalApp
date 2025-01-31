@@ -15,9 +15,6 @@
         <Label Content="Диагноз:" Margin="10,100,10,0"/>
         <TextBox x:Name="txtDiagnosis" Margin="70,100,10,0" VerticalAlignment="Top"/>
 
-        <Label Content="Лечащий врач:" Margin="10,121,10,-21"/>
-        <ComboBox x:Name="cmbDoctors" DisplayMemberPath="FullName" SelectedValuePath="Id" Margin="107,123,10,192" />
-
-        <Button Content="Сохранить" Margin="10,0,10,0" VerticalAlignment="Center" Click="btnSave_Click"/>
+        <Button Content="Сохранить" Margin="10,136,10,0" VerticalAlignment="Top" Click="btnSave_Click"/>
     </Grid>
 </Window>
